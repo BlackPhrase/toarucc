@@ -1,3 +1,5 @@
 tcc-as
 *.o
 *.swp
+
+[Bb]uild
