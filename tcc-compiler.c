@@ -15,9 +15,29 @@
 
 int skip_linking;
 
+void tokenize()
+{
+    fprintf(stderr, "Tokenizing...\n");
+};
+
+void parse()
+{
+    fprintf(stderr, "Parsing...\n");
+};
+
+void optimize()
+{
+    fprintf(stderr, "Optimizing...\n");
+};
+
 void compile()
 {
 	fprintf(stderr, "Compiling...\n");
+
+    tokenize();
+    parse();
+
+    optimize();
 };
 
 void link()
