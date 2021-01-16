@@ -13,7 +13,15 @@
 #define TOARUCC_VERSION_MINOR 1
 #define TOARUCC_VERSION_PATCH 0
 
-int skip_linking;
+
+int skip_compiling = 0;
+int skip_assembling = 0;
+int skip_linking = 0;
+
+void preprocess()
+{
+	// TODO
+};
 
 void tokenize()
 {
@@ -61,12 +69,35 @@ int main(int argc, char **argv)
     {
         if(!strcmp(argv[i], "--version"))
             print_version();
+
+		// Only preprocess the code, without compiling it
+		if(!strcmp(argv[i], "-E"))
+			skip_compiling = 1;
+		
+		// Only compile the code, without assembling it
+		if(!strcmp(argv[i], "-S"))
+			skip_assembling = 1;
+		
+        // Only compile the code, without linking it
+        if(!strcmp(argv[i], "-c"))
+            skip_linking = 1;
+		
     };
 
-    compile();
+	preprocess();
 	
-    if(!skip_linking)
-        link();
+	if(!skip_compiling)
+	{
+		compile();
+
+		if(!skip_assembling)
+		{
+			assemble();
+		
+			if(!skip_linking)
+				link();
+		};
+	};
 
     fprintf(stderr, "Done!\n");
     return EXIT_SUCCESS;
