@@ -53,6 +53,13 @@ void link()
     fprintf(stderr, "Linking...\n");
 };
 
+void print_help()
+{
+    fprintf(stderr, "Usage: toarucc [options] file...\n");
+    fprintf(stderr, "Options:\n");
+    fprintf(stderr, "  --help\t\tDisplay this information.\n");
+    fprintf(stderr, "  --version\t\tDisplay compiler version information.\n");
+};
 
 void print_version_short()
 {
@@ -72,6 +79,8 @@ int main(int argc, char **argv)
 
     for(int i = 0; i < argc; ++i)
     {
+        if(!strcmp(argv[i], "--help"))
+            print_help();
 
         if(!strcmp(argv[i], "-v"))
             print_version_short();
