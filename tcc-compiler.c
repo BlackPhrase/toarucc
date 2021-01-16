@@ -53,9 +53,14 @@ void link()
     fprintf(stderr, "Linking...\n");
 };
 
+
+void print_version_short()
+{
+    fprintf(stderr, "toarucc version %d.%d.%d\n", TOARUCC_VERSION_MAJOR, TOARUCC_VERSION_MINOR, TOARUCC_VERSION_PATCH);
+};
+
 void print_version()
 {
-    //fprintf(stderr, "toarucc version %d.%d.%d\n", TOARUCC_VERSION_MAJOR, TOARUCC_VERSION_MINOR, TOARUCC_VERSION_PATCH);
     fprintf(stderr, "toarucc %d.%d.%d\n", TOARUCC_VERSION_MAJOR, TOARUCC_VERSION_MINOR, TOARUCC_VERSION_PATCH);
     fprintf(stderr, "Copyright (C) 2020 ToaruCC Contributors\n");
     fprintf(stderr, "This is free software; see the source for copying conditions.	There is NO warranty; not even MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n");
@@ -67,6 +72,11 @@ int main(int argc, char **argv)
 
     for(int i = 0; i < argc; ++i)
     {
+
+        if(!strcmp(argv[i], "-v"))
+            print_version_short();
+
+        // Print out the compiler's version
         if(!strcmp(argv[i], "--version"))
             print_version();
 
